@@ -7,7 +7,8 @@
     </div>
     <div class="flex gap-4 items-center mb-4">
       <p class="bg-soft-blue px-4 h-[36px] flex items-center text-white mr-1">行先記入</p>
-      <input v-model="form.content" type="text" class="px-3 border-2 border-zinc-900 h-[36px] w-[calc(100%-118px)]"/>
+      <input v-model="form.content" type="text" :maxlength="setting?.content_char_limit"
+             class="px-3 border-2 border-zinc-900 h-[36px] w-[calc(100%-118px)]"/>
     </div>
     <div class="flex gap-4 items-center mb-4">
       <p class="bg-soft-blue px-4 py-1.5 text-white mr-1">帰社予定</p>
@@ -71,7 +72,8 @@
     </div>
     <div class="flex gap-4 items-center mb-4">
       <p class="bg-soft-blue px-4 h-[36px] flex items-center text-white mr-1">行先記入</p>
-      <input v-model="form.remark" type="text" class="px-3 border-2 border-zinc-900 h-[36px] w-[calc(100%-118px)]"/>
+      <input v-model="form.remark" type="text" :maxlength="setting?.remark_char_limit"
+             class="px-3 border-2 border-zinc-900 h-[36px] w-[calc(100%-118px)]"/>
     </div>
   </div>
   <div class="flex gap-6 w-full">
@@ -88,7 +90,7 @@ import {MemberSchedule} from "@/types/Schedule.ts";
 import useScheduleAPI from "@/composables/useScheduleAPI.ts";
 import {onClickOutside} from "@vueuse/core";
 
-const {dialog, selected_date} = useStore()
+const {dialog, selected_date, setting} = useStore()
 const {INSERT} = useScheduleAPI()
 const visible = ref(false)
 const date_wrap = ref()
