@@ -22,6 +22,9 @@ onMounted(() => {
     case "memo":
       component.value = defineAsyncComponent(() => import('@/components/MemoDialog.vue'));
       break;
+    case "member":
+      component.value = defineAsyncComponent(() => import('@/components/MemberDialog.vue'));
+      break;
     default:
       dialog.value.visible = false
       dialog.value.content = null

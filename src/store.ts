@@ -14,7 +14,7 @@ interface Store {
   dialog: {
     visible: boolean;
     content: Schedule | null;
-    component: "schedule" | "memo" | "setting" | "none",
+    component: "schedule" | "memo" | "setting" | "none" | "member",
   };
   schedules: Schedule[];
   memo: null | Memo;

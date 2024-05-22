@@ -32,13 +32,20 @@
 import Dialog from "@/components/Dialog.vue";
 import AppTable from "@/components/AppTable.vue";
 
-import {computed, ref} from "vue";
-import {onClickOutside} from "@vueuse/core";
+
+import {computed, onMounted, ref} from "vue";
+import {onClickOutside, useIntervalFn} from "@vueuse/core";
 
 import useStore from "@/composables/useStore.ts";
 import useScheduleAPI from "@/composables/useScheduleAPI.ts";
 import GET_CURR_ISO_DATE from "@/utilities/get-curr-isodate.ts";
 import useMemoAPI from "@/composables/useMemoAPI.ts";
+
+onMounted(() => {
+  useIntervalFn(() => {
+    update();
+  }, Number(setting.value?.update_time || 3) * 1000 * 60);
+})
 
 const {selected_date, dialog, schedules, setting, memo} = useStore()
 const {SEARCH: SEARCH_SCHEDULES} = useScheduleAPI()

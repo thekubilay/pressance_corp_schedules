@@ -1,7 +1,7 @@
 <template>
   <tr class="even:bg-[#f2f2f2] odd:bg-white">
-    <td class="text-center py-1 border-b w-[75px] text-base">{{ index + 1 }}</td>
-    <td class="pl-3 py-1 border-b w-[300px]">
+    <td class="text-center py-1 border-b w-[75px] text-base border-r">{{ index + 1 }}</td>
+    <td class="pl-3 py-1 border-b w-[300px] border-r">
       <p v-if="!isEdit && item.member"
          class="h-[36px] w-[100px] flex items-center justify-center bg-dark-blue text-white text-base">
         {{ item.member }}
@@ -9,7 +9,7 @@
       <input v-else-if="isEdit && item.member" v-model="name" type="text" :maxlength="setting?.name_char_limit"
              class="px-3 border py-1">
     </td>
-    <td class="text-center p-1 border-b w-[75px]">
+    <td class="text-center p-1 border-b w-[75px] border-r">
       <button v-if="!isEdit"
               class="bg-[#3742fa] mx-auto flex items-center justify-center text-white w-[40px] h-[36px]" @click="edit">
         <i class="fa fa-pencil"></i>
@@ -32,6 +32,7 @@
 import {Schedule} from "@/types/Schedule.ts";
 import {PropType, ref} from "vue";
 import useStore from "@/composables/useStore.ts";
+import useMemberAPI from "@/composables/useMemberAPI.ts";
 
 const props = defineProps({
   index: {
@@ -42,6 +43,7 @@ const props = defineProps({
   }
 })
 
+const {DELETE, UPDATE} = useMemberAPI()
 const {setting} = useStore()
 const isEdit = ref<boolean>(false)
 const name = ref<string>("")
@@ -52,17 +54,14 @@ const edit = (): void => {
 }
 
 const remove = (): void => {
-
+  const payload = {"id": props.item.id, "table": "schedule_member"}
+  DELETE(payload as any)
 }
 
 const submit = (): void => {
   isEdit.value = false
   const payload = {"member": name.value, "id": props.item.id, "table": "schedule_member"}
-
+  UPDATE(payload as any)
 }
 
-
-const empty = (): void => {
-  name.value = ""
-}
 </script>

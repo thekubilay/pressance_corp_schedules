@@ -28,6 +28,7 @@ class MemoAPIClient extends Base {
       "created_at": date,
       "table": "schedule_memo"
     }
+
     try {
       return await axios.post(`${this.baseUrl}/memo/insert.php`, payload, this.getConfigWithAuthToken());
     } catch (error: any) {
