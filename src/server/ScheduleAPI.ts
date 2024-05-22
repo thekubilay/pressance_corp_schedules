@@ -22,41 +22,9 @@ class ScheduleAPIClient extends Base {
       return (error as any).response;
     }
   }
-
-  async retrieve(organizationId: number, eventId: number): Promise<AxiosResponse> {
+  async insert(payload: object): Promise<AxiosResponse> {
     try {
-      return await axios.get(`${this.baseUrl}/organizations/${organizationId}/events/${eventId}/`, this.getConfigWithAuthToken());
-
-    } catch (error: any) {
-      return (error as any).response;
-    }
-  }
-
-  async create(organizationId: number, payload: FormData): Promise<AxiosResponse> {
-    try {
-      return await axios.post(`${this.baseUrl}/organizations/${organizationId}/events/`, payload, this.getConfigWithAuthToken());
-
-    } catch (error: any) {
-      return (error as any).response;
-    }
-  }
-
-
-  async update(organizationId: number, eventId: number, payload: FormData): Promise<AxiosResponse> {
-    try {
-      return await axios.patch(`${this.baseUrl}/organizations/${organizationId}/events/${eventId}/`, payload, this.getConfigWithAuthToken());
-
-
-    } catch (error: any) {
-      return (error as any).response;
-    }
-  }
-
-
-  async delete(organizationId: number, eventId: number): Promise<AxiosResponse> {
-    try {
-      return await axios.delete(`${this.baseUrl}/organizations/${organizationId}/events/${eventId}/`, this.getConfigWithAuthToken());
-
+      return await axios.post(`${this.baseUrl}/schedule/insert.php`, payload, this.getConfigWithAuthToken());
     } catch (error: any) {
       return (error as any).response;
     }

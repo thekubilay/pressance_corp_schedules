@@ -1,6 +1,6 @@
 import {createApp} from 'vue'
 import {createPinia} from "pinia";
-import {setupCalendar, Calendar, DatePicker} from 'v-calendar';
+import {Calendar, DatePicker} from 'v-calendar';
 
 import 'v-calendar/style.css';
 import './assets/input.css'
@@ -8,12 +8,20 @@ import './assets/styles.css'
 
 import App from './App.vue'
 import router from "./router";
+import InitAPIClient from "@/server/InitAPI.ts";
 
 const app = createApp(App);
 const pinia = createPinia()
-// app.use(setupCalendar, {})
-app.use(pinia)
-app.use(router)
-app.component('VCalendar', Calendar)
-app.component('VDatePicker', DatePicker)
-app.mount('#app')
+const api = new InitAPIClient()
+
+api.init().then(async (): Promise<void> => {
+  app.component('VCalendar', Calendar)
+  app.component('VDatePicker', DatePicker)
+  app.use(pinia)
+  app.use(router)
+
+  api.retrieve()
+
+  app.mount('#app')
+})
+

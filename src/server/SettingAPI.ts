@@ -10,12 +10,10 @@ class SettingAPIClient extends Base {
   }
 
 
-  async search(date: string): Promise<AxiosResponse> {
+  async search(): Promise<AxiosResponse> {
     try {
       const payload = {
-        "date": date,
-        "table_schedule": "schedule_schedule",
-        "table_member": "schedule_member"
+        "table": "schedule_setting",
       }
       return await axios.post(`${this.baseUrl}/setting/read.php`, payload, this.getConfigWithAuthToken());
     } catch (error: any) {
@@ -23,40 +21,9 @@ class SettingAPIClient extends Base {
     }
   }
 
-  async retrieve(organizationId: number, eventId: number): Promise<AxiosResponse> {
+  async insert(payload: object): Promise<AxiosResponse> {
     try {
-      return await axios.get(`${this.baseUrl}/organizations/${organizationId}/events/${eventId}/`, this.getConfigWithAuthToken());
-
-    } catch (error: any) {
-      return (error as any).response;
-    }
-  }
-
-  async create(organizationId: number, payload: FormData): Promise<AxiosResponse> {
-    try {
-      return await axios.post(`${this.baseUrl}/organizations/${organizationId}/events/`, payload, this.getConfigWithAuthToken());
-
-    } catch (error: any) {
-      return (error as any).response;
-    }
-  }
-
-
-  async update(organizationId: number, eventId: number, payload: FormData): Promise<AxiosResponse> {
-    try {
-      return await axios.patch(`${this.baseUrl}/organizations/${organizationId}/events/${eventId}/`, payload, this.getConfigWithAuthToken());
-
-
-    } catch (error: any) {
-      return (error as any).response;
-    }
-  }
-
-
-  async delete(organizationId: number, eventId: number): Promise<AxiosResponse> {
-    try {
-      return await axios.delete(`${this.baseUrl}/organizations/${organizationId}/events/${eventId}/`, this.getConfigWithAuthToken());
-
+      return await axios.post(`${this.baseUrl}/setting/insert.php`, payload, this.getConfigWithAuthToken());
     } catch (error: any) {
       return (error as any).response;
     }

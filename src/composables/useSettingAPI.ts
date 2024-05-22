@@ -1,22 +1,27 @@
-import ScheduleAPIClient from "@/server/ScheduleAPI.ts";
+import SettingAPIClient from "@/server/SettingAPI.ts";
 import useStore from "@/composables/useStore.ts";
 import {API} from "@/config.ts";
 
 import {AxiosResponse} from "axios";
 
 export default function () {
-  const {schedules} = useStore();
-  const APIClient: ScheduleAPIClient = new ScheduleAPIClient(API);
+  const {setting} = useStore();
+  const APIClient: SettingAPIClient = new SettingAPIClient(API);
 
-  async function SEARCH(date:string): Promise<void> {
-    const response: AxiosResponse = await APIClient.search(date);
+  async function SEARCH(date: string): Promise<void> {
+    const response: AxiosResponse = await APIClient.search();
 
     if (response.status === 200) {
-      schedules.value = response.data;
+      setting.value = response.data;
     }
+  }
+
+  async function INSERT(data: object): Promise<void> {
+    const response: AxiosResponse = await APIClient.insert(data);
   }
 
   return {
     SEARCH,
+    INSERT,
   }
 }
