@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="flex gap-10">
+    <div class="flex gap-10 sp:gap-4">
       <AppTable v-for="(item, i) in members" :key="i" :members="item"/>
     </div>
     <button class="px-4 bg-dark-blue text-white h-[40px] mt-10 mb-5" @click="open">連絡メモ</button>

@@ -1,17 +1,17 @@
 <template>
   <tr class="even:bg-[#f2f2f2] odd:bg-white">
     <td class="px-1 py-1 border-b-2 border-r-2 border-dark-blue h-[40px]">
-      <button v-if="item.member" class="bg-dark-blue text-white font-bold text-lg text-center h-full w-full"
+      <button v-if="item.member" class="bg-dark-blue text-white font-bold sp:font-medium text-lg sp:text-sm text-center h-full w-full"
               @click="open">{{ item.member }}
       </button>
     </td>
-    <td class="px-3 py-1 border-b-2 border-r-2 border-dark-blue font-bold text-md" :class="classes">
+    <td class="px-3 py-1 border-b-2 border-r-2 border-dark-blue font-bold sp:font-medium text-md sp:text-sm" :class="classes">
       {{ NEXT(item.schedules)?.content }}
     </td>
-    <td class="px-1 py-1 border-b-2 border-r-2 border-dark-blue font-bold text-center" :class="classes">
+    <td class="px-1 py-1 border-b-2 border-r-2 border-dark-blue  sp:font-medium text-md sp:text-sm text-center" :class="classes">
       {{ dateTime }}
     </td>
-    <td class="px-1 py-1 border-b-2 border-dark-blue font-bold" :class="classes">{{NEXT(item.schedules)?.remark}}</td>
+    <td class="px-1 py-1 border-b-2 border-dark-blue font-bold  sp:font-medium text-md sp:text-sm" :class="classes">{{ NEXT(item.schedules)?.remark }}</td>
   </tr>
 </template>
 <script setup lang="ts">

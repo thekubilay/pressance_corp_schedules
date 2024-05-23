@@ -1,9 +1,10 @@
 html, body {
-    font-family: 游ゴシック体, "Yu Gothic", YuGothic, sans-serif;;
+  font-family: 游ゴシック体, "Yu Gothic", YuGothic, sans-serif;;
+  background: #f2f2f2;
 }
 
 body {
-    height: 100vh;
+  height: 100vh;
 }
 
 body #app {

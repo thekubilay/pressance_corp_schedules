@@ -10,8 +10,8 @@ export default {
   ],
   theme: {
     screens: {
-      'sp': {'max': '640px'},
-      'pc': {'min': '641px'}
+      'sp': {'max': '700px'},
+      'pc': {'min': '724px'}
     },
     extend: {
       fontSize: {
@@ -37,5 +37,15 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({addUtilities}) {
+      const newUtilities = {
+        '.unselectable': {
+          'user-select': 'none',
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ],
 };
+
