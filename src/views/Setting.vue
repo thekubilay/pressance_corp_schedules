@@ -64,7 +64,7 @@
         <td class="pl-3 py-4 text-center">
           <input v-model="setMemoVisible" type="checkbox" class="w-[30px] h-[30px]">
         </td>
-        <td class="px-3 py-4 text-base">10～40（文字）で設定</td>
+        <td class="px-3 py-4 text-base">連絡メモ欄の表示</td>
       </tr>
       <tr>
         <td class="pl-3 text-base py-4">6</td>
